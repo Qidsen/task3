@@ -5,7 +5,7 @@ export default [
   },
   {
     path: '/greetings',
-    name: 'greetins',
+    name: 'greetings',
     component: () => import('@/views/Greetings'),
   },
   {
