@@ -42,7 +42,7 @@
         </el-form-item>
         <el-form-item label="Provider" prop="provider">
           <el-select v-model="formData.provider">
-            <el-option label="Provider 1" value="0" />
+            <el-option label="Provider 1" value="0" selected />
             <el-option label="Provider 2" value="1" />
           </el-select>
         </el-form-item>
@@ -77,9 +77,12 @@ export default {
   name: "Create",
   data: () => ({
     formData: {
+      created: new Date().toLocaleDateString(),
+      receiver: "Baranovskaya E. V.",
       email: "",
       name: "",
       surname: "",
+      fullName: "",
       phone: "",
       items: [
         {
@@ -87,8 +90,8 @@ export default {
           value: "",
         },
       ],
-      type: "0",
-      provider: "0",
+      type: "",
+      provider: "",
       id: 0,
       date: "",
       comment: "",
@@ -113,6 +116,8 @@ export default {
       this.$refs[formName].resetFields();
     },
     async submitForm() {
+      this.formData.fullName = this.formData.name + " " + this.formData.surname;
+      console.log(this.formData.fullName);
       await this.postOrder(this.formData);
       this.resetForm('formData');
     },

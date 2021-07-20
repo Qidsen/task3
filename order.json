@@ -1,26 +1,12 @@
 {
   "orders": [
     {
-      "email": "fasf",
-      "name": "gsdfgsdg",
-      "surname": "gsdfgk",
-      "phone": "khjkhjk",
-      "items": [
-        {
-          "key": 1,
-          "value": "fsdafasf"
-        }
-      ],
-      "type": "0",
-      "provider": "0",
-      "id": 1,
-      "date": "2021-07-08T21:00:00.000Z",
-      "comment": ""
-    },
-    {
+      "created": "20.07.2021",
+      "receiver": "Baranovskaya E. V.",
       "email": "",
-      "name": "",
-      "surname": "",
+      "name": "gsdfg",
+      "surname": "asdfasdf",
+      "fullName": "gsdfg asdfasdf",
       "phone": "",
       "items": [
         {
@@ -28,32 +14,11 @@
           "value": ""
         }
       ],
-      "type": "0",
-      "provider": "0",
-      "id": 2,
+      "type": "",
+      "provider": "",
+      "id": 26,
       "date": "",
-      "comment": "fsdf"
-    },
-    {
-      "email": "gsdfsdf",
-      "name": "sfgsdfg",
-      "surname": "gsdgsdg",
-      "phone": "gdsgsfg",
-      "items": [
-        {
-          "key": 1,
-          "value": "hdhdfh"
-        },
-        {
-          "key": 1625842966890,
-          "value": "asdf"
-        }
-      ],
-      "type": "0",
-      "provider": "0",
-      "id": 3,
-      "date": "2021-07-11T21:00:00.000Z",
-      "comment": "fasfasdf"
+      "comment": ""
     }
   ]
 }
