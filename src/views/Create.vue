@@ -4,16 +4,19 @@
       <div class="webpage__form-block">
         <h1>Customer</h1>
         <el-form-item label="Email" prop="email" required>
-          <el-input v-model="formData.email" placeholder="Your email" />
+          <el-input 
+            v-model.trim="formData.email"
+            :class="{ invalid: ($v.email.$dirty && !$v.email.$required) || ($v.email.dirty && !$v.email.$email) }"
+            placeholder="Your email" />
         </el-form-item>
         <el-form-item label="Name" prop="name" required>
-          <el-input v-model="formData.name" placeholder="Your name" />
+          <el-input v-model.trim="formData.name" placeholder="Your name" />
         </el-form-item>
         <el-form-item label="Surname" prop="surname" required>
-          <el-input v-model="formData.surname" placeholder="Your surname" />
+          <el-input v-model.trim="formData.surname" placeholder="Your surname" />
         </el-form-item>
         <el-form-item label="Phone number" prop="phone" required>
-          <el-input v-model="formData.phone" placeholder="Your phone number" />
+          <el-input v-model.trim="formData.phone" placeholder="Your phone number" />
         </el-form-item>
       </div>
       <div class="webpage__form-block">
@@ -36,14 +39,14 @@
         </el-button>
         <el-form-item label="Type" prop="type">
           <el-select v-model="formData.type">
-            <el-option label="Retail" value="0" />
-            <el-option label="Wholesale" value="1" />
+            <el-option label="Retail" value="Retail" />
+            <el-option label="Wholesale" value="Wholesale" />
           </el-select>
         </el-form-item>
         <el-form-item label="Provider" prop="provider">
           <el-select v-model="formData.provider">
-            <el-option label="Provider 1" value="0" selected />
-            <el-option label="Provider 2" value="1" />
+            <el-option label="Provider 1" value="Provider 1" selected />
+            <el-option label="Provider 2" value="Provider 2" />
           </el-select>
         </el-form-item>
         <el-form-item label="Order ID">
@@ -72,6 +75,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import { email, required } from 'vuelidate/lib/validators';
 
 export default {
   name: "Create",
@@ -90,14 +94,19 @@ export default {
           value: "",
         },
       ],
-      type: "",
-      provider: "",
+      type: "Retail",
+      provider: "Provider 1",
       id: 0,
       date: "",
       comment: "",
     },
   }),
-
+  validations: {
+    email: { email, required },
+    name: { required },
+    surname: { required },
+    phone: { required },
+  },
   methods: {
     ...mapActions('orders', ['postOrder']),
     removeItem(item) {
@@ -116,6 +125,10 @@ export default {
       this.$refs[formName].resetFields();
     },
     async submitForm() {
+      if (this.$v.invalid) {
+        this.$v.touch();
+        return;
+      }
       this.formData.fullName = this.formData.name + " " + this.formData.surname;
       console.log(this.formData.fullName);
       await this.postOrder(this.formData);

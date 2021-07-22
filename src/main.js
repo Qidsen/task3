@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vuelidate from 'vuelidate';
 import App from './App.vue';
 import router from '@/router';
 import store from '@/store/store';
@@ -15,6 +16,7 @@ axios.defaults.headers.common = {
 
 Vue.config.productionTip = false;
 
+Vue.use(Vuelidate);
 Vue.use(ElementUI, { locale });
 
 new Vue({
